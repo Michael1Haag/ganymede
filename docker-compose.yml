@@ -7,7 +7,7 @@ services:
     depends_on:
       - ganymede-temporal
     environment:
-      - TZ=America/Chicago # Set to your timezone
+      - TZ=Europe/Berlin # Set to your timezone
       - DB_HOST=ganymede-db
       - DB_PORT=5432
       - DB_USER=ganymede
@@ -31,11 +31,10 @@ services:
       - MAX_VIDEO_DOWNLOAD_EXECUTIONS=5
       - MAX_VIDEO_CONVERT_EXECUTIONS=3
     volumes:
-      - /path/to/vod/storage:/vods
-      - ./logs:/logs
-      - ./data:/data
-      # Uncomment below to persist temp files
-      #- ./tmp:/tmp
+      - /storage/vods:/vods
+      - /root/ganymede/logs:/logs
+      - /root/ganymede/data:/data
+      - /tmp/vods:/tmp
     ports:
       - 4800:4000
   ganymede-frontend:
